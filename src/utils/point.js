@@ -30,10 +30,6 @@ function humanizePointTime(date, format = TIME_FORMAT) {
  * @returns {string} - Продолжительность точки маршрута
  */
 function countPointDuration(dateFrom, dateTo) {
-  if (!dateTo || !dateTo) {
-    return '';
-  }
-
   const durationInMinutes = dayjs(dateTo).diff(dayjs(dateFrom), 'minute');
 
   if (durationInMinutes < 60) {

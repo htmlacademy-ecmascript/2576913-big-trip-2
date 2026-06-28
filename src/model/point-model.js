@@ -71,8 +71,8 @@ export default class PointModel extends Observable {
     }
 
     try {
-      const responce = await this.#pointsApiService.updatePoint(update);
-      const updatedPoint = this.#adaptToClient(responce);
+      const response = await this.#pointsApiService.updatePoint(update);
+      const updatedPoint = this.#adaptToClient(response);
       this.#points = [
         ...this.#points.slice(0, index),
         updatedPoint,
@@ -86,8 +86,8 @@ export default class PointModel extends Observable {
 
   async addPoint(updateType, update) {
     try {
-      const responce = await this.#pointsApiService.addPoint(update);
-      const newPoint = this.#adaptToClient(responce);
+      const response = await this.#pointsApiService.addPoint(update);
+      const newPoint = this.#adaptToClient(response);
       this.#points = [newPoint, ...this.#points];
       this._notify(updateType, newPoint);
     } catch(err) {
