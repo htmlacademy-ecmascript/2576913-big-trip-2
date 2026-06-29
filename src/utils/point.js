@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 
 const DATE_FORMAT = 'MMM D';
 const TIME_FORMAT = 'HH:mm';
+const MINUTES_IN_HOUR = 60;
 
 /**
  * Преобразует дату в человекочитаемый формат
@@ -32,13 +33,13 @@ function humanizePointTime(date, format = TIME_FORMAT) {
 function countPointDuration(dateFrom, dateTo) {
   const durationInMinutes = dayjs(dateTo).diff(dayjs(dateFrom), 'minute');
 
-  if (durationInMinutes < 60) {
+  if (durationInMinutes < MINUTES_IN_HOUR) {
     return `${durationInMinutes}M`;
   }
 
-  const days = Math.floor(durationInMinutes / (60 * 24));
-  const hours = Math.floor((durationInMinutes % (60 * 24)) / 60);
-  const minutes = durationInMinutes % 60;
+  const days = Math.floor(durationInMinutes / (MINUTES_IN_HOUR * 24));
+  const hours = Math.floor((durationInMinutes % (MINUTES_IN_HOUR * 24)) / MINUTES_IN_HOUR);
+  const minutes = durationInMinutes % MINUTES_IN_HOUR;
 
   if (days === 0) {
     return `${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M`;
